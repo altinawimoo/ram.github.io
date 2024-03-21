@@ -1,3 +1,5 @@
+require('dotenv').config(); // Add this line to load environment variables from .env file
+
 // Import necessary modules
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -11,7 +13,12 @@ const port = 3000; // Change the port as needed
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Discord bot setup
-const discordToken = 'MTIxNTI0NjU5MTg1ODg0MzY2OA.Gf4fhK.23H9TNOrzGkGrnDzhAh06EDBsmgjuG9YVh6IWg';
+const discordToken = process.env.DISCORD_TOKEN; // Retrieve token from environment variable
+if (!discordToken) {
+    console.error("Discord token not found. Make sure you have set up your .env file properly.");
+    process.exit(1); // Exit the process if token is not found
+}
+
 // Define your intents
 const intents = new Intents([
     Intents.FLAGS.GUILDS, // This intent is required for all bots
