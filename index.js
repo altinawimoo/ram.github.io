@@ -1,5 +1,3 @@
-require('dotenv').config(); // Add this line to load environment variables from .env file
-
 // Import necessary modules
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Discord bot setup
 const discordToken = process.env.DISCORD_TOKEN; // Retrieve token from environment variable
 if (!discordToken) {
-    console.error("Discord token not found. Make sure you have set up your .env file properly.");
+    console.error("Discord token not found. Make sure you have set up your environment variable properly.");
     process.exit(1); // Exit the process if token is not found
 }
 
